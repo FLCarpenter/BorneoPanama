@@ -23,8 +23,6 @@ calculates various measures of taxonomic congruence and topological comparison (
 
 ```Analysis_Plot_lineage_pd_correlation```
 
-```Analysis_phylodiversity_structure.R```
-
 ```Data_Preparation_LRPD.R```
 
 ```Calculation_LRPD.R```
