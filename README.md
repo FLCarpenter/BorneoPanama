@@ -5,9 +5,7 @@ R scripts were run locally using R v4.3.2 in RStudio v2023.09.1+494, with the ex
 
 ## 1. Evaluating_Trees
 ```Analyses_site_tree_comparison.R```
-calculates various measures of taxonomic congruence and topological comparison
-
-tRI analyses carried out using [taxonomicindices.R]([https://pages.github.com/](https://github.com/tjcreedy/phylostuff/blob/main/taxonomicindices.R)); tSDI clusters manually identified
+calculates various measures of taxonomic congruence and topological comparison (tRI analyses carried out using [taxonomicindices.R](https://github.com/tjcreedy/phylostuff/blob/main/taxonomicindices.R); tSDI clusters manually identified)
 
 ```Plot_4184_tree.R``` plots the full phylogeny with heatmap
 
