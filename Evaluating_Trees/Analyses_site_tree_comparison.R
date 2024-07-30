@@ -13,9 +13,7 @@ library(phangorn)
 #Read in data
 phy_metadata <- read.csv("metadata_4184.csv")
 phy_4184 <- read.tree("Final_4k_Pars9NTBIN_ultraLSD2_root.tree")
-phy_borneo_prune <- read.tree("Borneo_Prune_Pars9_ultraLSD2.tree")
 phy_borneo_recon <- read.tree("Borneo_Recon_Pars9_ultraLSD2.tree")
-phy_panama_prune <- read.tree("Panama_Prune_Pars9_ultraLSD2.tree")
 phy_panama_recon <- read.tree("Panama_Recon_Pars9_ultraLSD2.tree")
 tSDI_clusters <- read.csv("tSDI_raw.csv")
 
@@ -34,8 +32,8 @@ drop_tips_panama <- setdiff(phy_metadata$db_id, site_panama_tips)
 phy_borneo_prune <- drop.tip(phy_4184, drop_tips_borneo)
 phy_panama_prune <- drop.tip(phy_4184, drop_tips_panama)
 
-#write.tree(phy_panama_prune, "Borneo_Prune_Pars9_ultraLSD2.tree")
-#write.tree(phy_panama_prune, "Panama_Prune_Pars9_ultraLSD2.tree")
+write.tree(phy_panama_prune, "Borneo_Prune_Pars9_ultraLSD2.tree")
+write.tree(phy_panama_prune, "Panama_Prune_Pars9_ultraLSD2.tree")
 
 ##Calculations
 
