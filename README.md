@@ -21,7 +21,7 @@ calculates various measures of taxonomic congruence and topological comparison (
 
 ```Analysis_Plot_pd_rarefaction.R``` Sample-size-based rarefaction to standardise for unequal richness across samples
 
-```Analysis_Plot_lineage_pd_correlation``` Compares phylogenetic structure and measures of PD at the family-level between sites
+```Analysis_Plot_lineage_pd_correlation.R``` Compares phylogenetic structure and measures of PD at the family-level between sites
 
 ```Data_Preparation_LRPD.R``` Set up matrices required for LRPD analysis
 
