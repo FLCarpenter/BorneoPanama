@@ -262,7 +262,7 @@ Lineage_rank_plot <- plot_grid(NRI_plot, NTI_plot, PDses_plot, labels = c("(a)",
 ggsave("LRPD_plot.svg", Lineage_rank_plot, height=12, width=10, limitsize = F)
 
 
-
+dev.off()
 
 ##Breakpoint Analysis##
 
