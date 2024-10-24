@@ -427,6 +427,38 @@ plot_heatmap_site_family_label_2 <- plot_heatmap_site_family_label + geom_text2(
 ##Add label for outgroup taxa alongside heatmap
 plot_heatmap_site_family_label_3 <- plot_heatmap_site_family_label_2 + geom_cladelabel(node=labels[33,3], label=labels[33,4], color="grey40", offset=2.115, align=TRUE, fontsize = 5)
 
-ggsave("Heatmap_Tree_plot.pdf", plot = plot_heatmap_site_family_label_3, width=25, height = 750, limitsize = FALSE)
+#To save as 1 complete PDF:
+#ggsave("Heatmap_Tree_plot.pdf", plot = plot_heatmap_site_family_label_3, width=25, height = 750, limitsize = FALSE)
+
+#Split into multiple plots:
+
+# Define the number of plots to split into
+n_plots <- 22
+
+#extract tree data from ggtree plot
+tree_data <- plot_heatmap_site_family_label_3$data
+
+# Get the y-axis range of the data
+y_min <- min(tree_data$y)
+y_max <- max(tree_data$y)
+
+# Calculate the height of each segment
+segment_height <- (y_max - y_min) / n_plots
+
+# Loop through each segment and save the plot
+for (i in 1:n_plots) {
+  # Define the y limits for the current segment
+  y_start <- y_min + (i - 1) * segment_height
+  y_end <- y_start + segment_height
+  
+  # Create a plot for the current segment
+  tree_segment <- plot_heatmap_site_family_label_3 + 
+    coord_cartesian(ylim = c(y_start, y_end)) +
+    theme(legend.position = ifelse(i == n_plots, "right", "none"))  # Show legend only on the last plot
+  
+  
+  # Save the plot as a separate file
+  ggsave(filename = paste0("tree_segment_", i, ".svg"), plot = tree_segment, width = 25, height = 34, limitsize = FALSE)
+}
 
 dev.off()
