@@ -123,7 +123,7 @@ diversity_family_NTI$Species_Rich <- ifelse(diversity_family_NTI$Family%in%c("St
 #pearsons correlation between paired sites
 PDses_correlate <- cor.test(diversity_family_PDses$Inverse_PDses_Panama, diversity_family_PDses$Inverse_PDses_Borneo, method=c("pearson"))
 #fit linear model 
-linear_PDses <- lm(Inverse_PDses_Panama ~ Inverse_PDses_Borneo, data=diversity_family_PDses)
+linear_PDses <- lm(Inverse_PDses_Borneo ~ Inverse_PDses_Panama, data=diversity_family_PDses)
 #get parameters from the correlation analysis
 r_value_PDses <- PDses_correlate$estimate
 p_value_PDses <- PDses_correlate$p.value
@@ -140,7 +140,7 @@ coeff_PDses <- coeff_PDses%>%pivot_wider(names_from = Coefficients, values_from 
 #pearsons correlation between paired sites
 NRI_correlate <- cor.test(diversity_family_NRI$NRI_Panama, diversity_family_NRI$NRI_Borneo, method=c("pearson"))
 #fit linear model 
-linear_NRI <- lm(NRI_Panama ~ NRI_Borneo, data=diversity_family_NRI)
+linear_NRI <- lm(NRI_Borneo ~ NRI_Panama, data=diversity_family_NRI)
 #get parameters from the correlation analysis
 r_value_NRI <- NRI_correlate$estimate
 p_value_NRI <- NRI_correlate$p.value
@@ -157,7 +157,7 @@ coeff_NRI <- coeff_NRI%>%pivot_wider(names_from = Coefficients, values_from = es
 #pearsons correlation between paired sites
 NTI_correlate <- cor.test(diversity_family_NTI$NTI_Panama, diversity_family_NTI$NTI_Borneo, method=c("pearson"))
 #fit linear model 
-linear_NTI <- lm(NTI_Panama ~ NTI_Borneo, data=diversity_family_NTI)
+linear_NTI <- lm(NTI_Borneo~NTI_Panama, data=diversity_family_NTI)
 #get parameters from the correlation analysis
 r_value_NTI <- NTI_correlate$estimate
 p_value_NTI <- NTI_correlate$p.value
@@ -184,7 +184,7 @@ Plot_PDses_Correlate <- ggplot(diversity_family_PDses, aes(x=Inverse_PDses_Panam
   xlab(expression("-"*PD[SES]~"Panama"))+  
   ylab(expression("-"*PD[SES]~"Malaysia"))+
   scale_x_continuous(limits = c(-3, 9.9), breaks = c(-2, 0, 2, 4, 6, 8))+
-  scale_y_continuous(limits = c(-2.1, 8.1), breaks = c(-2, 0, 2, 4, 6, 8)) +
+  scale_y_continuous(limits = c(-1.9, 8.4), breaks = c(-2, 0, 2, 4, 6, 8)) +
   theme_bw() +
   theme(legend.position = "right", 
         legend.justification = "top",
@@ -196,7 +196,7 @@ Plot_PDses_Correlate <- ggplot(diversity_family_PDses, aes(x=Inverse_PDses_Panam
         plot.margin = unit(c(5.5,30,5.5,5.5),"pt"))+ 
   guides(fill = guide_legend(title.position = "top", nrow=3, override.aes = list(shape = 21, size=1.5), order = 2), shape = guide_legend(title.position = "top", title="Species-rich families", nrow=3, order = 1, override.aes = list(size=1.5))) +
   geom_abline(data = coeff_PDses, aes(intercept = Intercept, slope = Slope), linetype="dashed", color = "red", linewidth = 0.4) +
-  annotate("text", x = 9.9, y = -2.1, size = 3, label = expression(paste("r = 0.562,  ", italic(p), " < 0.001")), parse = TRUE, hjust=1)
+annotate("text", x = 9.9, y = -1.9, size = 3, label = expression(paste("r = 0.558,  ", italic(p), " < 0.001")), parse = TRUE, hjust=1)
 
 Plot_NRI_Correlate <- ggplot(diversity_family_NRI, aes(x=NRI_Panama, y=NRI_Borneo, fill=paired_significance, shape=Species_Rich))+
   geom_point()+
@@ -204,7 +204,7 @@ Plot_NRI_Correlate <- ggplot(diversity_family_NRI, aes(x=NRI_Panama, y=NRI_Borne
   scale_shape_manual(values = Shapes, breaks = c('Staphylinidae', 'Curculionidae', 'Chrysomelidae'), name="Families") +
   xlab("NRI Panama")+
   ylab("NRI Malaysia")+
-  scale_x_continuous(limits = c(-0.9, 8.4), breaks = c(0, 2, 4, 6, 8))+
+  scale_x_continuous(limits = c(-1, 8.6), breaks = c(0, 2, 4, 6, 8))+
   scale_y_continuous(limits = c(-1.9, 7.2), breaks = c(0, 2, 4, 6, 8)) +
   theme_bw() +
   theme(legend.position = "right", 
@@ -217,7 +217,7 @@ Plot_NRI_Correlate <- ggplot(diversity_family_NRI, aes(x=NRI_Panama, y=NRI_Borne
         plot.margin = unit(c(5.5,82,5.5,212),"pt"))+ 
   guides(fill = guide_legend(title.position = "top", nrow=3, override.aes = list(shape = 21, size=1.5), order = 2), shape = guide_legend(title.position = "top", title="Species-rich families", nrow=3, order = 1, override.aes = list(size=1.5))) +
   geom_abline(data = coeff_NRI, aes(intercept = Intercept, slope = Slope), linetype="dashed", color = "red", linewidth = 0.4) +
-  annotate("text", x = 8.4, y = -1.9, size = 3, label = expression(paste("r = 0.065, ", italic(p), " = 0.681")), parse = TRUE, hjust=1)
+  annotate("text", x = 8.4, y = -1.9, size = 3, label = expression(paste("r = 0.078, ", italic(p), " = 0.622")), parse = TRUE, hjust=1)
 
 Plot_NTI_Correlate <- ggplot(diversity_family_NTI, aes(x=NTI_Panama, y=NTI_Borneo, fill=paired_significance, shape=Species_Rich))+
   geom_point()+
@@ -225,7 +225,7 @@ Plot_NTI_Correlate <- ggplot(diversity_family_NTI, aes(x=NTI_Panama, y=NTI_Borne
   scale_shape_manual(values = Shapes, breaks = c('Staphylinidae', 'Curculionidae', 'Chrysomelidae'), name="Families") +
   xlab("NTI Panama")+
   ylab("NTI Malaysia")+
-  scale_x_continuous(limits = c(-0.5, 8.2), breaks = c(0, 2, 4, 6, 8))+
+  scale_x_continuous(limits = c(-0.5, 8.5), breaks = c(0, 2, 4, 6, 8))+
   scale_y_continuous(limits = c(-2.1, 6.6), breaks = c(-2, 0, 2, 4, 6)) +
   theme_bw() +
   theme(legend.position = "right", 
@@ -238,7 +238,7 @@ Plot_NTI_Correlate <- ggplot(diversity_family_NTI, aes(x=NTI_Panama, y=NTI_Borne
         plot.margin = unit(c(5.5,30,5.5,5.5),"pt"))+ 
   guides(fill = guide_legend(title.position = "top", nrow=3, override.aes = list(shape = 21, size=1.5), order = 2), shape = guide_legend(title.position = "top", title="Species-rich families", nrow=3, order = 1, override.aes = list(size=1.5))) +
   geom_abline(data = coeff_NTI, aes(intercept = Intercept, slope = Slope), linetype="dashed", color = "red", linewidth = 0.4) +
-  annotate("text", x = 8.2, y = -2.1, size = 3, label = expression(paste("r = 0.592, ", italic(p), " < 0.001")), parse = TRUE, hjust=1)
+  annotate("text", x = 8.2, y = -2.1, size = 3, label = expression(paste("r = 0.582, ", italic(p), " < 0.001")), parse = TRUE, hjust=1)
 
 #combine plots
 plot_Lineage_Correlation_row1 <- plot_grid(Plot_NTI_Correlate + theme(legend.position="none"), Plot_PDses_Correlate + theme(legend.position="none"), labels = c("(b)", "(c)"), label_size = 12, hjust = -0.1, vjust=2, align = "v", nrow=1)
